@@ -26,17 +26,25 @@ namespace TicketHub.Controllers
         public IActionResult Post(Ticket ticket)
         {
 
-            //validate contact
-            if (string.IsNullOrEmpty(ticket.CustomerName))
-            {
-                return BadRequest("Invalid name");
-            }
+            ////validate contact
+            //if (string.IsNullOrEmpty(ticket.CustomerName))
+            //{
+            //    return BadRequest("Invalid name");
+            //}
 
-            if (int.IsNegative(ticket.TicketNumber))
+            //if (int.IsNegative(ticket.concertId))
+            //{
+            //    return BadRequest("Invalid Ticket Number");
+            //}
+
+            if (ModelState.IsValid)
             {
-                return BadRequest("Invalid Ticket Number");
+                return Ok("Hello " + ticket.Name + "," + "thank you for purchasing a ticket for " + ticket.ConcertId + " from TicketHub! - POST");
             }
-            return Ok("Hello " + ticket.CustomerName + "," + "thank you for purchasing ticket #" + ticket.TicketNumber + " from TicketHub! - POST");
+            else
+            {
+                return BadRequest("Invalid ticket");
+            }
         }
 
 

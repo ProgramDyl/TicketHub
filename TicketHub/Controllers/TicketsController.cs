@@ -19,8 +19,27 @@ namespace TicketHub.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("Welcome to TicketHub!");
+            return Ok("Welcome to TicketHub! - GET");
         }
+
+        [HttpPost]
+        public IActionResult Post(Ticket ticket)
+        {
+
+            //validate contact
+            if (string.IsNullOrEmpty(ticket.CustomerName))
+            {
+                return BadRequest("Invalid name");
+            }
+
+            if (int.IsNegative(ticket.TicketNumber))
+            {
+                return BadRequest("Invalid Ticket Number");
+            }
+            return Ok("Hello " + ticket.CustomerName + "," + "thank you for purchasing ticket #" + ticket.TicketNumber + " from TicketHub! - POST");
+        }
+
+
 
 
 

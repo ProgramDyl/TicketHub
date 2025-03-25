@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Azure.Storage.Queues;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace TicketHub.Controllers
 {
@@ -23,28 +26,35 @@ namespace TicketHub.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(Ticket ticket)
+        public async Task<IActionResult> Post(Ticket ticket)
         {
-
-            ////validate contact
-            //if (string.IsNullOrEmpty(ticket.CustomerName))
-            //{
-            //    return BadRequest("Invalid name");
-            //}
-
-            //if (int.IsNegative(ticket.concertId))
-            //{
-            //    return BadRequest("Invalid Ticket Number");
-            //}
-
-            if (ModelState.IsValid)
+            //validate ticket
+            if (ModelState.IsValid == false)
             {
-                return Ok("Hello " + ticket.Name + "," + "thank you for purchasing a ticket for " + ticket.ConcertId + " from TicketHub! - POST");
+                return BadRequest(ModelState);
             }
-            else
+
+            //post message to azure storage queue
+            string queueName = "tickets";
+            
+            string? connectionString = _configuration["AzureStorageConnectionString"];
+
+            if (string.IsNullOrEmpty(connectionString))
             {
-                return BadRequest("Invalid ticket");
+                return BadRequest("An error has occurred. ");
             }
+
+            QueueClient queueClient = new QueueClient(connectionString, queueName);
+
+            //serialize an object to jsob
+            string json = JsonSerializer.Serialize(ticket);
+
+            //send string msg to queue
+            await queueClient.SendMessageAsync("Hello TicketHub!");
+
+
+            return Ok("Thank you " + ticket.Name + " for buying ticket to concert#: " + ticket.ConcertId + "!");
+
         }
 
 

@@ -8,21 +8,21 @@ namespace TicketHub
         [Required(ErrorMessage = "ConcertID is required.")]
         [Range(1, int.MaxValue, ErrorMessage = "ConcertID must be greater than 0.")]
         public int ConcertId { get; set; }
-        
-        //[EmailAddress]
-        //[Required(ErrorMessage = "A valid email is required.")]
-        //public string Email { get; set; } = string.Empty;
+
+        [EmailAddress]
+        [Required(ErrorMessage = "A valid email is required.")]
+        public string Email { get; set; } = string.Empty;
 
         [MaxLength(20)]
         [Required(ErrorMessage = "Your name is required for the ticket purchase.")]
         public string Name { get; set; } = string.Empty;
 
-        //[Phone]
-        //[Required(ErrorMessage = "Phone number is required.")]
-        //public int Phone { get; set; }
+        [Phone]
+        [Required(ErrorMessage = "Phone number is required.")]
+        public int Phone { get; set; }
 
-        //[Required(ErrorMessage = "The number of tickets you need to buy is required!")]
-        //public int Quantity { get; set; }
+        [Required(ErrorMessage = "The number of tickets you need to buy is required!")]
+        public int Quantity { get; set; }
 
         //[CreditCard]
         //[Required(ErrorMessage = "Credit card number is required.")]
@@ -48,6 +48,6 @@ namespace TicketHub
 
         //[Required(ErrorMessage = "Country is required.")]
         //public string Country { get; set; } = string.Empty;
-        
+
     }
 }

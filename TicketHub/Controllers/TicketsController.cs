@@ -36,7 +36,7 @@ namespace TicketHub.Controllers
 
             //post message to azure storage queue
             string queueName = "tickets";
-            
+
             string? connectionString = _configuration["AzureStorageConnectionString"];
 
             if (string.IsNullOrEmpty(connectionString))
@@ -53,9 +53,12 @@ namespace TicketHub.Controllers
             await queueClient.SendMessageAsync("Hello TicketHub!");
 
 
-            return Ok("Thank you " + ticket.Name + " for buying ticket to concert#: " + ticket.ConcertId + "!");
-
+            return Ok(ticket.Name + ticket.Email + ticket.Phone + ticket.Quantity);
         }
+
+            
+
+    }
 
 
 
@@ -63,4 +66,3 @@ namespace TicketHub.Controllers
 
 
     }
-}

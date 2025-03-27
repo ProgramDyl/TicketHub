@@ -24,30 +24,30 @@ namespace TicketHub
         [Required(ErrorMessage = "The number of tickets you need to buy is required!")]
         public int Quantity { get; set; }
 
-        //[CreditCard]
-        //[Required(ErrorMessage = "Credit card number is required.")]
-        //public string CreditCard { get; set; } = string.Empty;
+        [CreditCard]
+        [Required(ErrorMessage = "Credit card number is required.")]
+        public string CreditCard { get; set; } = string.Empty;
 
-        //[Required(ErrorMessage = "Expiration date is required.")]
-        //public string Expiration { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Expiration date is required.")]
+        public string Expiration { get; set; } = string.Empty;
 
-        //[Required(ErrorMessage = "CVV is required.")]
-        //public string Cvv { get; set; } = string.Empty;
+        [Required(ErrorMessage = "CVV is required.")]
+        public string Cvv { get; set; } = string.Empty;
 
-        //[Required(ErrorMessage = "Address is required.")]
-        //public string Address { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Address is required.")]
+        public string Address { get; set; } = string.Empty;
 
-        //[Required(ErrorMessage = "City is required.")]
-        //public string City { get; set; } = string.Empty;
+        [Required(ErrorMessage = "City is required.")]
+        public string City { get; set; } = string.Empty;
 
-        //[Required(ErrorMessage = "Province is required.")]
-        //public string Province { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Province is required.")]
+        public string Province { get; set; } = string.Empty;
 
-        //[Required(ErrorMessage = "Postal code is required.")]
-        //public string PostalCode { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Postal code is required.")]
+        public string PostalCode { get; set; } = string.Empty;
 
-        //[Required(ErrorMessage = "Country is required.")]
-        //public string Country { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Country is required.")]
+        public string Country { get; set; } = string.Empty;
 
     }
 }

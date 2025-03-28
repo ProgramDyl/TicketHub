@@ -50,7 +50,7 @@ namespace TicketHub.Controllers
             string json = JsonSerializer.Serialize(ticket);
 
             //send string msg to queue
-            await queueClient.SendMessageAsync("Hello TicketHub!");
+            await queueClient.SendMessageAsync("Purchase from " + ticket.Email + " completed.");
 
             return Ok($"""
                 ==== TICKET PURCHASE RECEIPT ====

@@ -52,8 +52,32 @@ namespace TicketHub.Controllers
             //send string msg to queue
             await queueClient.SendMessageAsync("Hello TicketHub!");
 
+            return Ok($"""
+                ==== TICKET PURCHASE RECEIPT ====
 
-            return Ok(ticket.Name + ticket.Email + ticket.Phone + ticket.Quantity);
+                Customer Information:
+                Name: {ticket.Name}
+                Email: {ticket.Email}
+                Phone: {ticket.Phone}
+
+                Event Information:
+                Concert ID: {ticket.ConcertId}
+                Quantity: {ticket.Quantity}
+
+                Delivery Address:
+                Address: {ticket.Address}
+                City: {ticket.City}
+                {ticket.PostalCode}
+                {ticket.Country}
+
+                Payment Information:
+                Card: {ticket.CreditCard}
+                Expires: {ticket.Expiration}
+
+                ==================================
+                Thank you for your purchase, {ticket.Name}!
+                A confirmation email has been sent to {ticket.Email}.
+                """);
         }
 
             

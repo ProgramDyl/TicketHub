@@ -1,6 +1,7 @@
 ﻿using Azure.Storage.Queues;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -46,11 +47,16 @@ namespace TicketHub.Controllers
 
             QueueClient queueClient = new QueueClient(connectionString, queueName);
 
-            //serialize an object to jsob
-            string json = JsonSerializer.Serialize(ticket);
+            //serialize an object to json
+            string message = JsonSerializer.Serialize(ticket);
 
-            //send string msg to queue
-            await queueClient.SendMessageAsync(ticket.Email + " purchased: " + ticket.Quantity + " tickets to: " + ticket.ConcertId);
+            ////send string msg to queue
+            //await queueClient.SendMessageAsync(ticket.Email + " purchased: " + ticket.Quantity + " tickets to: " + ticket.ConcertId);
+
+
+            
+            var planTextBytes = Encoding.UTF8.GetBytes(message);
+            await queueClient.SendMessageAsync(Convert.ToBase64String(planTextBytes));
 
             return Ok($"""
                 ==== TICKET PURCHASE RECEIPT ====

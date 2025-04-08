@@ -10,8 +10,7 @@ namespace TicketHub
         public int ConcertId { get; set; }
 
         [EmailAddress]
-        [Required(ErrorMessage = "A valid email is required to proceed.")]
-        [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Please enter a valid email address.")]
+         [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Please enter a valid email address.")]
         public string Email { get; set; } = string.Empty;
 
 
@@ -25,7 +24,6 @@ namespace TicketHub
         [RegularExpression(@"^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]*$",
         ErrorMessage = "Invalid phone number format.")]
         public string Phone { get; set; }
-
 
         [Required(ErrorMessage = "The number of tickets you need to buy is required!")]
         [Range(1, 10, ErrorMessage = "Customers are eligible to purchase up to 10 tickets per order.")] //customer can only purchase 10 tickets at a time

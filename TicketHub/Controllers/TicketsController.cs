@@ -54,7 +54,7 @@ namespace TicketHub.Controllers
             string message = JsonSerializer.Serialize(ticket);
 
             ////send string msg to queue
-            await queueClient.SendMessageAsync(ticket.Email + " purchased: " + ticket.Quantity + " tickets to: " + ticket.ConcertId);
+            //await queueClient.SendMessageAsync(ticket.Email + " purchased: " + ticket.Quantity + " tickets to: " + ticket.ConcertId);
 
 
 

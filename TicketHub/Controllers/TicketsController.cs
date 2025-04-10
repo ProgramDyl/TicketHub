@@ -1,9 +1,11 @@
 ﻿using Azure.Storage.Queues;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+
 
 namespace TicketHub.Controllers
 {

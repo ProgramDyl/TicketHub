@@ -9,6 +9,7 @@ namespace TicketHub.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AllowAzureStaticWebApp")]
     public class TicketsController : ControllerBase
     {
         private readonly ILogger<TicketsController> _logger;

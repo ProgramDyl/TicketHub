@@ -13,7 +13,8 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy.WithOrigins(
-                "http://localhost:3000") 
+                "http://localhost:3000",
+                "https://proud-smoke-0828fe90f.6.azurestaticapps.net/") 
               .AllowAnyHeader()
               .AllowAnyMethod();
         });

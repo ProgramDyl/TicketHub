@@ -7,6 +7,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactFrontend",
+        policy =>
+        {
+            policy.WithOrigins(
+                "http://localhost:3000") 
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
 //user secrets
@@ -23,6 +35,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAzureStaticWebApp");
 
 app.UseAuthorization();
 

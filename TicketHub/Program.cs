@@ -7,6 +7,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+/////////////////////////////
+///   CORS Configuration  //
+/////////////////////////////
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactFrontend",
@@ -19,6 +23,7 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod();
         });
 });
+
 
 var app = builder.Build();
 
@@ -37,6 +42,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// connection string for cors
 app.UseCors("AllowAzureStaticWebApp");
 
 app.UseAuthorization();
